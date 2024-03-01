@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class kalkulatorIp {
     public static void main (String[] args) {
-// Deklarasi dan inisialisasi variabel yang digunakan untuk mengolah data
+// Deklarasi dan inisiasi variabel yang digunakan untuk mengolah data
         int jmlMatkul;
         double totalSksLulus = 0;
         double totalSKS = 0;
