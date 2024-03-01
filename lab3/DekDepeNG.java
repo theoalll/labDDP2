@@ -76,8 +76,8 @@ public class DekDepeNG {
                             else // Jika kapasitas matkul sudah penuh
                                 out.printf("Siswa dengan NPM %s gagal mengambil matkul dengan kode %s\n", npm, kodeMatkul);
 
+                            break;
                         }
-                        break;
                     }
                     break;
                 }
@@ -98,7 +98,7 @@ public class DekDepeNG {
                                 elem2.setNilai(nilai); 
                                 break;
                             }
-                            else if (elem2 != null && elem2.equals(elem.getListNilai()[(elem.getListNilai()).length-1])){ // Jika matkul tidak ditemukan (sudah mencapai object array terakhir)
+                            else if (elem2 != null){ // Jika matkul tidak ditemukan (sudah mencapai object array terakhir)
                                 out.printf("%s gagal memberikan nilai kepada siswa dengan NPM %s\n", idDosen, npm);
                             }
                             else break;
