@@ -93,14 +93,15 @@ public class DekDepeNG {
                 for (Dosen elem1: listDosen) { // Iterasi dosen
                     if (elem1.getIdDosen().equals(idDosen)) { // Validasi jika dosen ditemukan
                         for(NilaiController elem2: elem.getListNilai()) { // Iterasi nilai
-                            if (elem2.getKodeMatkul().equals(elem1.getMataKuliah().getKodeMatkul())){ // Validasi jika matkul ditemukan
+                            if (elem2 != null && elem2.getKodeMatkul().equals(elem1.getMataKuliah().getKodeMatkul())){ // Validasi jika matkul ditemukan
                                 out.println(elem1.beriNilai(npm, nilai));
                                 elem2.setNilai(nilai); 
                                 break;
                             }
-                            else if (elem2.equals(elem.getListNilai()[(elem.getListNilai()).length-1])){ // Jika matkul tidak ditemukan (sudah mencapai object array terakhir)
-                                out.printf("&s gagal memberikan nilai kepada siswa dengan NPM %s\n", idDosen, npm);
+                            else if (elem2 != null && elem2.equals(elem.getListNilai()[(elem.getListNilai()).length-1])){ // Jika matkul tidak ditemukan (sudah mencapai object array terakhir)
+                                out.printf("%s gagal memberikan nilai kepada siswa dengan NPM %s\n", idDosen, npm);
                             }
+                            else break;
                         }
                         break;
                     }
