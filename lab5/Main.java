@@ -2,15 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static ArrayList<Employee> employeeList = new ArrayList<>();
+    public static ArrayList<Employee> employeeList = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
+    static Employee employee = null;
+
 
     public static void main(String[] args) {
         System.out.println("Selamat Datang di PacilRekrutment");
         while (true) {
+            employee = null;
             printWelcomingMsg();
             System.out.print("Input: ");
             int actionCode = sc.nextInt();
+            sc.nextLine();
             switch (actionCode) {
                 case 1:
                     printEmployeeList();
@@ -37,18 +41,132 @@ public class Main {
 
     public static void printEmployeeList() {
         // TODO: Implemntasikan untuk print daftar employee
+        displayPermanentEmployee();
+        System.out.println("");
+        displayContractEmployee();
+        System.out.println("");
+        displayInternEmployee();
+        System.out.println("");
     }
 
     public static void hireEmployee() {
         // TODO: Implementasikan untuk hire employee
+        System.out.print("Nama: ");
+        String name = sc.nextLine();
+        System.out.print("Base Salary: ");
+        double baseSalary = sc.nextDouble();
+        sc.nextLine();
+        System.out.print("Status Employee (Permanent/Contract/Intern): ");
+        int contractPeriod = 0;
+        String status = sc.nextLine().toLowerCase();
+        if (status.equals("intern") || status.equals("contract")) {
+            System.out.print("Lama Kontrak (Bulan): ");
+            contractPeriod = sc.nextInt();
+            sc.nextLine();
+        }
+        switch(status){
+            case "permanent": {
+                employee = (PermanentEmployee)employee;
+                employee = new PermanentEmployee(name, baseSalary);
+                break;
+            }
+            case "contract": {
+                employee = (ContractEmployee)employee;
+                employee = new ContractEmployee(name, baseSalary, contractPeriod);
+                break;
+            }
+            case "intern": {
+                employee = (InternEmployee)employee;
+                employee = new InternEmployee(name, baseSalary, contractPeriod);
+                break;
+            }
+        }
+        System.out.printf("%s dengan ID %d bernama %s berhasil ditambahkan!\n\n", employee.getClass().getSimpleName(), employee.getEmployeeId(), employee.getName());
+        employeeList.add(employee);
     }
 
     public static void askForRaise() {
         // TODO: Implementasikan untuk pengajuan kenaikan gaji
+        boolean isThereAnyPermanentOrContractEmployee = false;
+        for (Employee elem : employeeList) {
+            if (elem instanceof PermanentEmployee || elem instanceof ContractEmployee) isThereAnyPermanentOrContractEmployee = true;
+            if (isThereAnyPermanentOrContractEmployee == true) break;
+        }
+        if (isThereAnyPermanentOrContractEmployee == false) {
+            System.out.println("Tidak Ada Permanent atau Contract Employee yang Terdaftar!!!\n");
+            return;
+        }
+
+        displayPermanentEmployee();
+        System.out.println("");
+        displayContractEmployee();
+        System.out.println("");
+
+        System.out.print("Masukan Nama/ID Employee: ");
+        String employeeId = sc.nextLine();
+
+        employee = getEmployeeByNameOrId(employeeId);
+        if (employee == null) {
+            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n", employeeId);
+            return;
+        }
+        if (employee instanceof PermanentEmployee || employee instanceof ContractEmployee) {
+            if (employee instanceof PermanentEmployee) employee = (PermanentEmployee)employee;
+            else employee = (ContractEmployee)employee;
+
+            double raiseValue = sc.nextDouble();
+            sc.nextLine();
+            if (raiseValue > 0) {
+                employee.askRaise(raiseValue);
+                System.out.printf("Employee dengan Nama/ID %s Berhasil Dinaikkan Gajinya Sebesar %f\n", employeeId, raiseValue);
+            }
+            else System.out.println("Kenaikan Gaji Tidak Boleh Negatif!!!");
+        }
+        else{
+            System.out.println("Intern Employee Tidak Bisa Mendapatkan Raise!!!");
+        }
+
     }
 
     public static void extendContract() {
         // TODO: Implementasikan untuk pengajuan perpanjangan masa kontrak
+        boolean isThereAnyInternOrContractEmployee = false;
+        for (Employee elem : employeeList) {
+            if (elem instanceof InternEmployee || elem instanceof ContractEmployee) isThereAnyInternOrContractEmployee = true;
+            if (isThereAnyInternOrContractEmployee == true) break;
+        }
+        if (isThereAnyInternOrContractEmployee == false) {
+            System.out.println("Tidak Ada Contract atau Intern Employee yang Terdaftar!!!\n");
+            return;
+        }
+
+        displayPermanentEmployee();
+        System.out.println("");
+        displayContractEmployee();
+        System.out.println("");
+
+        System.out.print("Masukan Nama/ID Employee: ");
+        String employeeId = sc.nextLine();
+
+        employee = getEmployeeByNameOrId(employeeId);
+        if (employee == null) {
+            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n", employeeId);
+            return;
+        }
+
+        if (employee instanceof InternEmployee || employee instanceof ContractEmployee) {
+            if (employee instanceof InternEmployee) employee = (InternEmployee)employee;
+            else employee = (ContractEmployee)employee;
+
+            System.out.print("Masukan Lama Extend Kontrak (Bulan): ");
+            int duration = sc.nextInt();
+            sc.nextLine();
+            employee.extendContract(duration);
+            System.out.printf("Employee dengan Nama/ID %s Berhasil Diperpanjang Kontraknya Selama %d Bulan\n", employeeId, duration);
+        }
+        else{
+            System.out.println("PermanentEmployee Tidak Bisa Extend Kontrak!!!");
+        }
     }
 
     // Kumpulan Helper Method
@@ -64,7 +182,12 @@ public class Main {
     }
 
     public static void displayPermanentEmployee() {
-        if (PermanentEmployee.employeeCnt == 0) {
+        boolean isThereAnyPermanentEmployee = false;
+        for (Employee elem : employeeList) {
+            if (elem instanceof PermanentEmployee) isThereAnyPermanentEmployee = true;
+            if (isThereAnyPermanentEmployee == true) break;
+        }
+        if (isThereAnyPermanentEmployee == false) {
             return;
         }
         System.out.println("===== Pegawai Tetap =====");
@@ -76,7 +199,12 @@ public class Main {
     }
 
     public static void displayContractEmployee() {
-        if (ContractEmployee.employeeCnt == 0) {
+        boolean isThereAnyContractEmployee = false;
+        for (Employee elem : employeeList) {
+            if (elem instanceof ContractEmployee) isThereAnyContractEmployee = true;
+            if (isThereAnyContractEmployee == true) break;
+        }
+        if (isThereAnyContractEmployee == false) {
             return;
         }
         System.out.println("===== Pegawai Kontrak =====");
@@ -88,7 +216,12 @@ public class Main {
     }
 
     public static void displayInternEmployee() {
-        if (InternEmployee.employeeCnt == 0) {
+        boolean isThereAnyInternEmployee = false;
+        for (Employee elem : employeeList) {
+            if (elem instanceof InternEmployee) isThereAnyInternEmployee = true;
+            if (isThereAnyInternEmployee == true) break;
+        }
+        if (isThereAnyInternEmployee == false) {
             return;
         }
         System.out.println("===== Pegawai Intern =====");
