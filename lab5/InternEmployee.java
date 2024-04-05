@@ -2,31 +2,29 @@ public class InternEmployee extends Employee implements ExtendContractDuration {
     public int contractDuration = 0;
     public double salaryMultiplier = 1;
 
-    // TODO: Lengkapi constructor berikut
+    // Constructor untuk InternEmployee yang akan menerima nama, gaji, dan durasi kontrak
     InternEmployee(String name, double salary, int contractDuration) {
         super(name, salary);
         this.contractDuration = contractDuration;
     }
 
-    // TODO: Lengkapi method ini
+    // Method calculateSalary akan mengembalikan gaji yang sudah dikalikan dengan salaryMultiplier
     @Override
     public double calculateSalary() {
         return getSalary()*getSalaryMultiplier();
     }
 
-    // TODO: Lengkapi method ini
     @Override
     public void extendContract(int duration) {
         this.contractDuration += duration;
     }
 
-    // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d] %s | Salary : %.0f | Kontrak : %d Bulan\n", getEmployeeId(), getName(), calculateSalary(), getContractDuration());
+        return String.format("[%d] %s | Salary : %.0f | Kontrak : %d Bulan", getEmployeeId(), getName(), calculateSalary(), getContractDuration());
     }
 
-    // TODO: Lengkapi method helper ini
+    // Method getSalaryMultiplier akan mengembalikan salaryMultiplier sesuai dengan durasi kontrak
     public double getSalaryMultiplier() {
         if (this.contractDuration <= 6) this.salaryMultiplier = 1;
         else if (this.contractDuration <= 12) this.salaryMultiplier = 1.25;
@@ -35,9 +33,10 @@ public class InternEmployee extends Employee implements ExtendContractDuration {
         return this.salaryMultiplier;
     }
 
+    // Getter dan Setter
     public int getContractDuration() {
         return this.contractDuration;
     }
-
-    public void askRaise(double raise) {}
 }   
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab5

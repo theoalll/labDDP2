@@ -1,32 +1,31 @@
 public class PermanentEmployee extends Employee implements RaiseSalary { //TODO: impelementasikan sesuai UML diagram
     public double raise = 0;
-    // TODO: Lengkapi constructor berikut
+    // Constructor untuk PermanentEmployee yang akan menerima nama dan gaji
     PermanentEmployee(String name, double salary) {
         super(name, salary);
     }
 
-    // TODO: Lengkapi method ini
     @Override
     public double calculateSalary() {
         return getSalary();
     }
 
-    // TODO: Lengkapi method ini
+    // Method askRaise akan menambahkan raise ke salary
     @Override
     public void askRaise(double raise) {
         this.raise += raise;
         setSalary(getSalary()+getRaise());
     }
 
-    // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d] %s | Salary : %.0f | Kenaikan : %.0f\n", getEmployeeId(), getName(), calculateSalary(), getRaise());
+        return String.format("[%d] %s | Salary : %.0f | Kenaikan : %.0f", getEmployeeId(), getName(), calculateSalary(), getRaise());
     }
 
+    // Setter dan Getter
     public double getRaise() {
         return this.raise;
     }
-
-    public void extendContract(int duration) {}
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab5

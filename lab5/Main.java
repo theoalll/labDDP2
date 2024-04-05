@@ -39,18 +39,16 @@ public class Main {
         }
     }
 
+    // Method untuk menampilkan list employee
     public static void printEmployeeList() {
-        // TODO: Implemntasikan untuk print daftar employee
         displayPermanentEmployee();
-        System.out.println("");
         displayContractEmployee();
-        System.out.println("");
         displayInternEmployee();
-        System.out.println("");
     }
 
+    // Method hireEmployee untuk merekrut employee baru (Menambahkan object Employee ke dalam employeeList)
     public static void hireEmployee() {
-        // TODO: Implementasikan untuk hire employee
+        // Task #1: melakukan validasi apakah nama sudah terdaftar
         System.out.print("Nama: ");
         String name = sc.nextLine();
         for (Employee elem : employeeList) {
@@ -59,6 +57,8 @@ public class Main {
                 return;
             }
         }
+
+        // Task #2: menerima input base salary, status, dan lama durasi (jika status contract atau intern)
         System.out.print("Base Salary: ");
         double baseSalary = sc.nextDouble();
         sc.nextLine();
@@ -70,6 +70,8 @@ public class Main {
             contractPeriod = sc.nextInt();
             sc.nextLine();
         }
+
+        // Task #3: membuat object employee sesuai dengan status
         switch(status){
             case "permanent": {
                 employee = (PermanentEmployee)employee;
@@ -87,12 +89,15 @@ public class Main {
                 break;
             }
         }
+
+        //Task #4: menambahkan employee ke dalam employeeList dan memberikan output
         System.out.printf("%s dengan ID %d bernama %s berhasil ditambahkan!\n\n", employee.getClass().getSimpleName(), employee.getEmployeeId(), employee.getName());
         employeeList.add(employee);
     }
 
+    // Method askForRaise untuk menaikkan gaji employee
     public static void askForRaise() {
-        // TODO: Implementasikan untuk pengajuan kenaikan gaji
+        // Task #1: validasi apakah ada permanent atau contract employee
         boolean isThereAnyPermanentOrContractEmployee = false;
         for (Employee elem : employeeList) {
             if (elem instanceof PermanentEmployee || elem instanceof ContractEmployee) isThereAnyPermanentOrContractEmployee = true;
@@ -103,23 +108,24 @@ public class Main {
             return;
         }
 
+        // Task #2: menampilkan list permanent dan contract employee, meminta input nama/id employee
         displayPermanentEmployee();
-        System.out.println("");
         displayContractEmployee();
-        System.out.println("");
-
         System.out.print("Masukan Nama/ID Employee: ");
         String employeeId = sc.nextLine();
 
+        // Task #3: validasi apakah employee ditemukan, jika ya maka lakukan raise
         employee = getEmployeeByNameOrId(employeeId);
         if (employee == null) {
-            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n", employeeId);
+            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n\n", employeeId);
             return;
         }
         if (employee instanceof PermanentEmployee || employee instanceof ContractEmployee) {
+            // Melakukan casting agar bisa menggunakan method askRaise yang sesuai
             if (employee instanceof PermanentEmployee) employee = (PermanentEmployee)employee;
             else employee = (ContractEmployee)employee;
-
+        
+        // Task #4: meminta input raise, validasi raise tidak boleh negatif
             System.out.print("Masukan Jumlah Kenaikan: ");
             double raiseValue = sc.nextDouble();
             sc.nextLine();
@@ -135,8 +141,9 @@ public class Main {
 
     }
 
+    // Method extendContract untuk memperpanjang masa kontrak employee
     public static void extendContract() {
-        // TODO: Implementasikan untuk pengajuan perpanjangan masa kontrak
+        // Task #1: validasi apakah ada intern atau contract employee
         boolean isThereAnyInternOrContractEmployee = false;
         for (Employee elem : employeeList) {
             if (elem instanceof InternEmployee || elem instanceof ContractEmployee) isThereAnyInternOrContractEmployee = true;
@@ -147,21 +154,21 @@ public class Main {
             return;
         }
 
+        // Task #2: menampilkan list intern dan contract employee, meminta input nama/id employee
         displayContractEmployee();
-        System.out.println("");
         displayInternEmployee();
-        System.out.println("");
 
         System.out.print("Masukan Nama/ID Employee: ");
         String employeeId = sc.nextLine();
 
+        // Task #3: validasi apakah employee ditemukan, jika ya maka lakukan extend
         employee = getEmployeeByNameOrId(employeeId);
         if (employee == null) {
             System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n\n", employeeId);
             return;
         }
-
         if (employee instanceof InternEmployee || employee instanceof ContractEmployee) {
+            // Melakukan casting agar bisa menggunakan method extendContract yang sesuai
             if (employee instanceof InternEmployee) employee = (InternEmployee)employee;
             else employee = (ContractEmployee)employee;
 
@@ -176,8 +183,8 @@ public class Main {
         }
     }
 
-    // Kumpulan Helper Method
-
+    /* Kumpulan Helper Method */ 
+    // Method getEmployeeByNameOrId untuk mendapatkan employee berdasarkan nama atau id
     public static Employee getEmployeeByNameOrId(String nameOrId) {
         // Return employee if exists, otherwise null
         for (Employee employee : employeeList) {
@@ -188,7 +195,9 @@ public class Main {
         return null;
     }
 
+    // Method display untuk menampilkan employee berdasarkan status
     public static void displayPermanentEmployee() {
+        // Task #1: validasi apakah ada permanent employee
         boolean isThereAnyPermanentEmployee = false;
         for (Employee elem : employeeList) {
             if (elem instanceof PermanentEmployee) isThereAnyPermanentEmployee = true;
@@ -197,14 +206,18 @@ public class Main {
         if (isThereAnyPermanentEmployee == false) {
             return;
         }
+
+        // Task #2: menampilkan list permanent employee
         System.out.println("===== Pegawai Tetap =====");
         ArrayList<PermanentEmployee> permanentEmployees = getPermanentEmployee();
         for (PermanentEmployee employee : permanentEmployees) {
             System.out.println(employee);
         }
+        System.out.println("");
     }
 
     public static void displayContractEmployee() {
+        // Task #1: validasi apakah ada contract employee
         boolean isThereAnyContractEmployee = false;
         for (Employee elem : employeeList) {
             if (elem instanceof ContractEmployee) isThereAnyContractEmployee = true;
@@ -213,14 +226,18 @@ public class Main {
         if (isThereAnyContractEmployee == false) {
             return;
         }
+
+        // Task #2: menampilkan list contract employee
         System.out.println("===== Pegawai Kontrak =====");
         ArrayList<ContractEmployee> contractEmployees = getContractEmployee();
         for (ContractEmployee employee : contractEmployees) {
             System.out.println(employee);
         }
+        System.out.println("");
     }
 
     public static void displayInternEmployee() {
+        // Task #1: validasi apakah ada intern employee
         boolean isThereAnyInternEmployee = false;
         for (Employee elem : employeeList) {
             if (elem instanceof InternEmployee) isThereAnyInternEmployee = true;
@@ -229,15 +246,17 @@ public class Main {
         if (isThereAnyInternEmployee == false) {
             return;
         }
+
+        // Task #2: menampilkan list intern employee
         System.out.println("===== Pegawai Intern =====");
         ArrayList<InternEmployee> internEmployees = getInternEmployee();
         for (InternEmployee employee : internEmployees) {
             System.out.println(employee);
-        };
+        }
+        System.out.println("");
     }
 
-    // Penggunaan Generics dapat digunakan (akan dipelajari di week mendatang)
-    // untuk mengurangi pengulangan 3 method ini
+    // Method get employee berdasarkan status untuk mengembalikan list employee berdasarkan status
     public static ArrayList<InternEmployee> getInternEmployee() {
         ArrayList<InternEmployee> internEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
@@ -283,3 +302,5 @@ public class Main {
         System.out.println("Mohon masukkan opsi yang valid!\n");
     }
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab5

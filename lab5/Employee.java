@@ -1,17 +1,18 @@
-abstract class Employee { //TODO: impelementasikan sesuai UML diagram
-    public int employeeId;
+abstract class Employee { 
     public static int employeeCnt = 0;
+    public int employeeId;
     public String name;
     public double salary;
 
+    // Constructor untuk Employee yang akan menerima nama dan gaji
     public Employee(String name, double salary){
-        // TODO: Lengkapi constructor berikut
         this.name = name;
         this.salary = salary;
         this.employeeId = employeeCnt;
         employeeCnt++;
     }
 
+    // Getter dan Setter
     public void setName(String name) {
         this.name = name;
     }
@@ -36,8 +37,13 @@ abstract class Employee { //TODO: impelementasikan sesuai UML diagram
         return this.employeeId;
     }
 
+    // Method abstract yang akan diimplementasikan di subclass
     abstract public double calculateSalary();
     abstract public String toString();
-    abstract public void askRaise(double raise);
-    abstract public void extendContract(int duration);
+
+    // Tambahan method supaya tidak terjadi error saat dynamic binding di subclass
+    public void askRaise(double raise) {}
+    public void extendContract(int duration) {}
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab5
