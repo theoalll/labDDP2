@@ -8,13 +8,14 @@ public class PermanentEmployee extends Employee implements RaiseSalary { //TODO:
     // TODO: Lengkapi method ini
     @Override
     public double calculateSalary() {
-        return (getSalary()+getRaise());
+        return getSalary();
     }
 
     // TODO: Lengkapi method ini
     @Override
     public void askRaise(double raise) {
         this.raise += raise;
+        setSalary(getSalary()+getRaise());
     }
 
     // TODO: Lengkapi method ini

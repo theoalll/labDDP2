@@ -53,6 +53,12 @@ public class Main {
         // TODO: Implementasikan untuk hire employee
         System.out.print("Nama: ");
         String name = sc.nextLine();
+        for (Employee elem : employeeList) {
+            if (elem.getName().equals(name)) {
+                System.out.println("Nama sudah terdaftar!!!\n");
+                return;
+            }
+        }
         System.out.print("Base Salary: ");
         double baseSalary = sc.nextDouble();
         sc.nextLine();
@@ -117,11 +123,11 @@ public class Main {
             System.out.print("Masukan Jumlah Kenaikan: ");
             double raiseValue = sc.nextDouble();
             sc.nextLine();
-            if (raiseValue > 0) {
+            if (raiseValue >= 0) {
                 employee.askRaise(raiseValue);
                 System.out.printf("Employee dengan Nama/ID %s Berhasil Dinaikkan Gajinya Sebesar %.0f\n\n", employeeId, raiseValue);
             }
-            else System.out.println("Kenaikan Gaji Tidak Boleh Negatif!!!");
+            else System.out.println("Kenaikan Gaji Tidak Boleh Negatif!!!\n");
         }
         else{
             System.out.println("Intern Employee Tidak Bisa Mendapatkan Raise!!!");
