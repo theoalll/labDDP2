@@ -11,7 +11,7 @@ public class InternEmployee extends Employee implements ExtendContractDuration {
     // TODO: Lengkapi method ini
     @Override
     public double calculateSalary() {
-        return getSalary() + getSalary()*getSalaryMultiplier();
+        return getSalary()*getSalaryMultiplier();
     }
 
     // TODO: Lengkapi method ini

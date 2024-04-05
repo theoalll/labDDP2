@@ -1,7 +1,7 @@
 public class ContractEmployee extends Employee implements RaiseSalary, ExtendContractDuration { //TODO: impelementasikan sesuai UML diagram
     public int contractDuration = 0;
     public double salaryMultiplier = 1;
-    public double totalRaise = 0.0;
+    public double raise = 0.0;
 
     // TODO: Lengkapi constructor berikut
     ContractEmployee(String name, double salary, int contractDuration) {
@@ -13,13 +13,13 @@ public class ContractEmployee extends Employee implements RaiseSalary, ExtendCon
     @Override
     public void askRaise(double raise) {
         setSalary(getSalary() + raise);
-        this.totalRaise += raise;
+        this.raise += raise;
     }
 
     // TODO: Lengkapi method ini
     @Override
     public double calculateSalary() {
-        return getSalary() + getSalary()*getSalaryMultiplier() + getTotalRaise();
+        return (getSalary()+getRaise())*getSalaryMultiplier();
     }
 
     // TODO: Lengkapi method ini
@@ -31,7 +31,7 @@ public class ContractEmployee extends Employee implements RaiseSalary, ExtendCon
     // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d], %s | Salary : %f | Kenaikan : %f | Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getTotalRaise(), getContractDuration());
+        return String.format("[%d], %s | Salary : %f | Kenaikan : %f | Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getRaise(), getContractDuration());
     }
 
     // TODO: Lengkapi method helper ini
@@ -50,7 +50,7 @@ public class ContractEmployee extends Employee implements RaiseSalary, ExtendCon
         return this.contractDuration;
     }
 
-    public double getTotalRaise() {
-        return this.totalRaise;
+    public double getRaise() {
+        return this.raise;
     }
 }
