@@ -13,7 +13,6 @@ public class ContractEmployee extends Employee implements RaiseSalary, ExtendCon
     @Override
     public void askRaise(double raise) {
         this.raise += raise;
-        setSalary(getSalary() + raise);
     }
 
     // TODO: Lengkapi method ini
@@ -31,7 +30,7 @@ public class ContractEmployee extends Employee implements RaiseSalary, ExtendCon
     // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d] %s | Salary : %.0f | Kenaikan : %.0f | Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getRaise(), getContractDuration());
+        return String.format("[%d] %s | Salary : %.0f | Kenaikan : %.0f | Kontrak : %d\n", getEmployeeId(), getName(), calculateSalary(), getRaise(), getContractDuration());
     }
 
     // TODO: Lengkapi method helper ini

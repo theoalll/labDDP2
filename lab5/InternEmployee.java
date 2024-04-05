@@ -23,7 +23,7 @@ public class InternEmployee extends Employee implements ExtendContractDuration {
     // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d] %s | Salary : %.0f | Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getContractDuration());
+        return String.format("[%d] %s | Salary : %.0f | Kontrak : %d Bulan\n", getEmployeeId(), getName(), calculateSalary(), getContractDuration());
     }
 
     // TODO: Lengkapi method helper ini
