@@ -130,7 +130,7 @@ public class Main {
             else System.out.println("Kenaikan Gaji Tidak Boleh Negatif!!!\n");
         }
         else{
-            System.out.println("Intern Employee Tidak Bisa Mendapatkan Raise!!!");
+            System.out.println("Intern Employee Tidak Bisa Mendapatkan Raise!!!\n");
         }
 
     }
@@ -157,7 +157,7 @@ public class Main {
 
         employee = getEmployeeByNameOrId(employeeId);
         if (employee == null) {
-            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n", employeeId);
+            System.out.printf("Employee dengan Nama/ID %s Tidak Ditemukan!!!\n\n", employeeId);
             return;
         }
 
@@ -172,7 +172,7 @@ public class Main {
             System.out.printf("Employee dengan Nama/ID %s Berhasil Diperpanjang Kontraknya Selama %d Bulan\n\n", employeeId, duration);
         }
         else{
-            System.out.println("PermanentEmployee Tidak Bisa Extend Kontrak!!!");
+            System.out.println("PermanentEmployee Tidak Bisa Extend Kontrak!!!\n");
         }
     }
 
