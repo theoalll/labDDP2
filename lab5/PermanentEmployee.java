@@ -15,12 +15,13 @@ public class PermanentEmployee extends Employee implements RaiseSalary { //TODO:
     @Override
     public void askRaise(double raise) {
         this.raise += raise;
+        setSalary(getSalary()+raise);
     }
 
     // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d], %s | Salary : %f | Kenaikan : %f\n", getEmployeeId(), getName(), getSalary(), getRaise());
+        return String.format("[%d] %s | Salary : %.0f | Kenaikan : %.0f\n", getEmployeeId(), getName(), getSalary(), getRaise());
     }
 
     public double getRaise() {

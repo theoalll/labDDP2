@@ -23,19 +23,16 @@ public class InternEmployee extends Employee implements ExtendContractDuration {
     // TODO: Lengkapi method ini
     @Override
     public String toString() {
-        return String.format("[%d], %s | Salary : %f Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getContractDuration());
+        return String.format("[%d] %s | Salary : %.0f | Kontrak : %d\n", getEmployeeId(), getName(), getSalary(), getContractDuration());
     }
 
     // TODO: Lengkapi method helper ini
     public double getSalaryMultiplier() {
-        return this.salaryMultiplier;
-    }
-
-    public void setSalaryMultiplier() {
         if (this.contractDuration <= 6) this.salaryMultiplier = 1;
         else if (this.contractDuration <= 12) this.salaryMultiplier = 1.25;
         else if (this.contractDuration > 12) this.salaryMultiplier = 1.5;
         else this.salaryMultiplier = 0;
+        return this.salaryMultiplier;
     }
 
     public int getContractDuration() {

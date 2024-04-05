@@ -114,11 +114,12 @@ public class Main {
             if (employee instanceof PermanentEmployee) employee = (PermanentEmployee)employee;
             else employee = (ContractEmployee)employee;
 
+            System.out.print("Masukan Jumlah Kenaikan: ");
             double raiseValue = sc.nextDouble();
             sc.nextLine();
             if (raiseValue > 0) {
                 employee.askRaise(raiseValue);
-                System.out.printf("Employee dengan Nama/ID %s Berhasil Dinaikkan Gajinya Sebesar %f\n", employeeId, raiseValue);
+                System.out.printf("Employee dengan Nama/ID %s Berhasil Dinaikkan Gajinya Sebesar %.0f\n\n", employeeId, raiseValue);
             }
             else System.out.println("Kenaikan Gaji Tidak Boleh Negatif!!!");
         }
@@ -140,9 +141,9 @@ public class Main {
             return;
         }
 
-        displayPermanentEmployee();
-        System.out.println("");
         displayContractEmployee();
+        System.out.println("");
+        displayInternEmployee();
         System.out.println("");
 
         System.out.print("Masukan Nama/ID Employee: ");
@@ -162,7 +163,7 @@ public class Main {
             int duration = sc.nextInt();
             sc.nextLine();
             employee.extendContract(duration);
-            System.out.printf("Employee dengan Nama/ID %s Berhasil Diperpanjang Kontraknya Selama %d Bulan\n", employeeId, duration);
+            System.out.printf("Employee dengan Nama/ID %s Berhasil Diperpanjang Kontraknya Selama %d Bulan\n\n", employeeId, duration);
         }
         else{
             System.out.println("PermanentEmployee Tidak Bisa Extend Kontrak!!!");
@@ -195,7 +196,6 @@ public class Main {
         for (PermanentEmployee employee : permanentEmployees) {
             System.out.println(employee);
         }
-        System.out.println();
     }
 
     public static void displayContractEmployee() {
@@ -212,7 +212,6 @@ public class Main {
         for (ContractEmployee employee : contractEmployees) {
             System.out.println(employee);
         }
-        System.out.println();
     }
 
     public static void displayInternEmployee() {
@@ -228,8 +227,7 @@ public class Main {
         ArrayList<InternEmployee> internEmployees = getInternEmployee();
         for (InternEmployee employee : internEmployees) {
             System.out.println(employee);
-        }
-        System.out.println();
+        };
     }
 
     // Penggunaan Generics dapat digunakan (akan dipelajari di week mendatang)
