@@ -43,3 +43,5 @@ public class Tank extends Warrior {
         System.out.printf("| %-10s | %-15s | %-7s | %-7s | %-7s | %-7s | %-10s | %-10s |\n", this.getClass().getName(), name, attack, defense, health, shield, "", "");
     }
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab7

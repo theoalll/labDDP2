@@ -1,4 +1,4 @@
-public abstract class Warrior implements /* TODO */ {
+public abstract class Warrior implements Comparable<Warrior> {
     //Inisiasi class
     protected String name;
     protected int attack;
@@ -35,11 +35,17 @@ public abstract class Warrior implements /* TODO */ {
     }
 
     public void takeDamage(int damage) {
+        // Mengurangi damage dengan defense, jika hasilnya negatif, maka damage yang diterima adalah 0
         int reducedDamage = damage - this.defense;
         if (reducedDamage < 0) {
             reducedDamage = 0;
         }
+        // Mengurangi health dengan reducedDamage, jika health kurang dari 0, maka health menjadi 0 (meninggal)
         this.health -= reducedDamage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
+        // Menampilkan pesan berapa damage yang diterima dan sisa health
         System.out.println(this.name + " takes " + reducedDamage + " damage, remaining health: " + this.health);
     }
 
@@ -51,11 +57,15 @@ public abstract class Warrior implements /* TODO */ {
 
     public void revive() {
         numRevived++;
+        
     }
 
+    @Override
     public int compareTo(Warrior other) {
-        // TODO
-        // Implementasi comparable untuk Collections
+        // Mengurutkan berdasarkan nama
+        return this.getName().compareTo(other.getName());
     }
 
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab7

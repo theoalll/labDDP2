@@ -1,27 +1,29 @@
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
-public class WarriorList</* TODO */> {
-    private List<Warrior> warriors = new List<>(); // TODO: Instansiasi dengan concrete class yang merupakan List
-    private Queue<Warrior> fallenWarriors = new Queue<>(); // TODO: Instansiasi dengan concrete class yang merupakan Queue
+public class WarriorList<T extends Warrior> {
+    
+    private List<Warrior> warriors = new ArrayList<>(); // TODO: Instansiasi dengan concrete class yang merupakan List
+    private Queue<Warrior> fallenWarriors = new LinkedList<>(); // TODO: Instansiasi dengan concrete class yang merupakan Queue
 
     public void addWarrior(Warrior warrior) {
-        // TODO
+        warriors.add(warrior);
     }
 
     public void removeWarrior(Warrior warrior) {
-        // TODO
+        warriors.remove(warrior);
     }
 
     public List<Warrior> getWarriors() {
-        // TODO
+        return warriors;
     }
 
     public void addFallenWarrior(Warrior warrior) {
-        // TODO
+        fallenWarriors.add(warrior);
     }
 
     public Queue<Warrior> getFallenWarriors() {
-        // TODO
+        return fallenWarriors;
     }
 }
+
+// DDP_D_2306165660_TheoAnandaLemuel_Lab7
