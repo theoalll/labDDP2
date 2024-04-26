@@ -80,11 +80,13 @@ public class Battlefield {
         if (type == 1) {
             int shield = getValidInt("Enter shield strength (0 to 500): ", 0, 500);
             warrior = new Tank(name, attack, defense, health, shield);
-        } else if (type == 2) {
+        } 
+        else if (type == 2) {
             double criticalRate = getValidDouble("Enter critical rate (0.0 to 1.0): ", 0, 1);
             double criticalDamage = getValidDouble("Enter critical damage multiplier (1.0 to 5.0): ", 0, 5);
             warrior = new Archer(name, attack, defense, health, criticalRate, criticalDamage);
-        } else if (type == 3) {
+        } 
+        else if (type == 3) {
             warrior = new Mage(name, attack, defense, health);
         }
         
@@ -192,8 +194,8 @@ public class Battlefield {
         attacker.attack(defender);
         // Validasi apakah defender masih hidup, jika tidak remove dari List dan tambahkan ke fallen warrior 
         if (!defender.isAlive()) {
-            System.out.println(defender.getName() + " has fallen in battle!");
-            System.out.println(defender.getName()+ " has been removed fro the battle.");
+            System.out.println(defender.getName() + " has fallen in battle.");
+            System.out.println(defender.getName()+ " has been removed from the battle.");
             warriorList.addFallenWarrior(defender);
             warriorList.removeWarrior(defender);
         }
