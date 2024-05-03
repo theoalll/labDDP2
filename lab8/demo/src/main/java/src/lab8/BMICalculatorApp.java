@@ -89,6 +89,7 @@ public class BMICalculatorApp extends Application {
         female = new RadioButton("Female");
         male.setToggleGroup(group);
         female.setToggleGroup(group);
+
         genderPane.getChildren().add(male);
         genderPane.getChildren().add(female);
         inputPane.getChildren().add(genderPane);
@@ -219,7 +220,7 @@ public class BMICalculatorApp extends Application {
                 String bmi;
 
                 // validasi input
-                if (intHeight < 1 || intHeight > 199 ) {
+                if (intHeight < 100 || intHeight > 200 ) { // update batas tinggi badan di discord (diskusi-lab)
                     errorCode=1;
                     throw (new Exception());
                 }
@@ -278,7 +279,7 @@ public class BMICalculatorApp extends Application {
             catch (Exception e) {
                 switch(errorCode) {
                     case 0 : errorMsg.setText("Masukkan semua input dengan valid!"); break;
-                    case 1 : errorMsg.setText("Masukkan tinggi badan yang valid! (1-199 cm)"); break;
+                    case 1 : errorMsg.setText("Masukkan tinggi badan yang valid! (100-200 cm)"); break;
                     case 2 : errorMsg.setText("Masukkan berat badan yang valid! (1-199 kg)"); break;
                     case 3 : errorMsg.setText("Masukkan umur yang valid! (2-120 tahun)"); break;
                     default : break;
