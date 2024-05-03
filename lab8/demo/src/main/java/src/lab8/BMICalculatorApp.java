@@ -143,10 +143,10 @@ public class BMICalculatorApp extends Application {
         outputPane.getChildren().add(statusOut);
         // Label output deskripsi
         Label decsOut = new Label("• Healthy BMI range: 18.5 kg/m2 - 25 kg/m2\r\n" + //
-                        "• Healthy weight for the height: 59.9 kg - 81 kg\r\n" + //
-                        "• BMI Prime: 0.8\r\n" + //
-                        "• Ponderal Index: 11.1 kg/m3\r\n" //
-                        );
+                        "Underweight = BMI of 18.5 or under\n" + //
+                        "Normal weight = 18.5-24.9\n" +//
+                        "Overweight = 25-29.9\n" + //
+                        "Obesity = BMI of 30 or above\n");
         outputPane.getChildren().add(decsOut);
 
         // Menggabungkan subpane ke main pane
